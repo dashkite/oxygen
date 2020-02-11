@@ -2,11 +2,11 @@ import {Router} from "panda-router"
 import TemplateParser from "url-template"
 
 class PageRouter
-  constructor: ({@router = new Router, @handlers = {}})
+  constructor: ({@router = new Router, @handlers = {}}) ->
 
 create  = -> new PageRouter arguments...
 
-route = tee ({router, handlers}, template, data, handler) ->
+add = tee ({router, handlers}, template, data, handler) ->
   router.add {template, data}
   handlers[data.name] = handler
 
@@ -63,4 +63,4 @@ browse = ($, {url, name, parameters, state}) ->
     # For non-local URLs, open the link in a new tab.
     window.open url
 
-export {create, route, match, dispatch, link, push, replace, browse}
+export {create, add, match, dispatch, link, push, replace, browse}
