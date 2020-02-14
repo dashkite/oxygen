@@ -1,16 +1,17 @@
+import {curry, tee} from "panda-garden"
 import {Router} from "panda-router"
 import TemplateParser from "url-template"
 
 class PageRouter
-  constructor: ({@router = new Router, @handlers = {}}) ->
+  constructor: ({@router = new Router, @handlers = {}} = {}) ->
 
 create  = -> new PageRouter arguments...
 
-add = tee ({router, handlers}, template, data, handler) ->
+add = curry tee ({router, handlers}, template, data, handler) ->
   router.add {template, data}
   handlers[data.name] = handler
 
-match = ({router}, path) -> router.match path
+match = curry ({router}, path) -> router.match path
 
 # TODO this seems like it belongs somewhere else
 relative = (url) ->
@@ -20,7 +21,7 @@ relative = (url) ->
   else
     url
 
-dispatch = ($, {url, name, parameters}) ->
+dispatch = curry ($, {url, name, parameters}) ->
   {router, handlers} = $
   url ?= link {name, parameters}
   path = relative url
@@ -35,7 +36,7 @@ dispatch = ($, {url, name, parameters}) ->
     console.warn "No handler defined for '#{data.name}'"
     throw error
 
-link = ({router}, {name, parameters}) ->
+link = curry ({router}, {name, parameters}) ->
   for route in router.routes
     if route.data.name == name
       return TemplateParser
@@ -44,15 +45,15 @@ link = ({router}, {name, parameters}) ->
 
   console.warn "link: no page matching '#{name}'"
 
-push = ($, {url, name, parameters, state}) ->
+push = curry ($, {url, name, parameters, state}) ->
   url ?= link $, {name, parameters}
   window.history.pushState state, "", url
 
-replace = ($, {url, name, parameters, state}) ->
+replace = curry ($, {url, name, parameters, state}) ->
   url ?= link $, {name, parameters}
   window.history.replaceState state, "", url
 
-browse = ($, {url, name, parameters, state}) ->
+browse = curry ($, {url, name, parameters, state}) ->
   url ?= link $, {name, parameters}
   # pushState will throw if undefined
   try

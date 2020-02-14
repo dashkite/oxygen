@@ -1,8 +1,8 @@
 {
-  "name": "oxygen",
+  "name": "@dashkite/oxygen",
   "version": "0.0.1",
   "description": "Browser-friendly URL-template-based routing",
-  "main": "build/src/npm/index.js",
+  "main": "build/npm/src/index.js",
   "scripts": {
     "test": "p9k test"
   },
@@ -18,7 +18,7 @@
     "url-template"
   ],
   "author": "Dan Yoder",
-  "license": "MIT - Hippocratic 1.2",
+  "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
     "url": "https://github.com/dashkite/oxygen/issues"
   },
