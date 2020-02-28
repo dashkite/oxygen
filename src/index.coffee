@@ -64,4 +64,4 @@ browse = curry ($, {url, name, parameters, state}) ->
     # For non-local URLs, open the link in a new tab.
     window.open url
 
-export {create, add, match, dispatch, link, push, replace, browse}
+export default {create, add, match, dispatch, link, push, replace, browse}

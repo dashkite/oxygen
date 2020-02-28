@@ -24,10 +24,12 @@
   },
   "homepage": "https://github.com/dashkite/oxygen#readme",
   "dependencies": {
+    "panda-garden": "^5.0.0",
     "panda-router": "^2.1.0",
     "url-template": "^2.0.8"
   },
   "devDependencies": {
+    "amen": "^3.0.0",
     "panda-9000": "^5.0.2",
     "panda-builder": "^4.0.13"
   }
