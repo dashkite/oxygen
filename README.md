@@ -1,7 +1,7 @@
 # Oxygen
 Browser-friendly URL-template-based routing.
 
-Oxgen maps an [RFC 6517 URL template](https://tools.ietf.org/html/rfc6570) to a function.
+Oxgen maps an [RFC 6570 URL template](https://tools.ietf.org/html/rfc6570) to a function.
 
 (Code examples are CoffeeScript because we prefer it, but Oxygen is transpiled into modern JavaScript.)
 
@@ -14,13 +14,13 @@ Router.add router, "/hello/{name}",
   name: "greeting"
   ({bindings}) ->
     console.log "Hello, #{bindings.name}"
-    
+
 dispatch "/hello/dan"
 ```
 
 By itself, this is doesn't do much, but that's the idea: you can put anything in the function, and thus use routes for whatever you want, using whichever libraries or frameworks you want.
 
-That said, the [Neon](https://github.com/dashkite/neon) library provides combinators (functions that are meant to be composed) for use with Single Page App (SPA) scenarios.
+The [Neon](https://github.com/dashkite/neon) library provides [combinators](https://raganwald.com/2012/12/01/combinators-in-js.html) for dynamically rendering and updating Web pages. We can use Neon to construction the handlers for our routes.
 
 ## Installation
 
@@ -28,7 +28,7 @@ That said, the [Neon](https://github.com/dashkite/neon) library provides combina
 npm i @dashkite/oxygen
 ```
 
-Intended to be used in the browser via a bundler like Web Pack. May also be used in a server context, such as server-side rendering. The only parts of the API that depend on the DOM API are those that manipulate browser history: `push`, `replace`, and `browse`.
+Oxygen is intended to be used in the browser via a bundler like Web Pack. It may also be used in a server context, such as server-side rendering. The only parts of the API that depend on the DOM API are those that manipulate browser history: `push`, `replace`, and `browse`.
 
 ## API
 
