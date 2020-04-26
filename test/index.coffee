@@ -1,6 +1,6 @@
 import assert from "assert"
 import {print, test, success} from "amen"
-import Router from "../src"
+import Router, {dispatch} from "../src"
 
 do ->
 
@@ -11,12 +11,11 @@ do ->
       name = undefined
       router = Router.create()
 
-      Router.add router,
-        "/hello/{name}",
+      router.add "/hello/{name}",
         name: "greeting"
         ({bindings}) -> name = bindings.name
 
-      Router.dispatch router, url: "/hello/dan"
+      router.dispatch url: "/hello/dan"
 
       assert.equal "dan", name
   ]
