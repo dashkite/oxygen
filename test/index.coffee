@@ -8,9 +8,9 @@ do ->
 
     test "dispatch", ->
 
-      name = undefined
       router = Router.create()
 
+      name = undefined
       router.add "/hello/{name}",
         name: "greeting"
         ({bindings}) -> name = bindings.name

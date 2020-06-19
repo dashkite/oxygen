@@ -1,81 +1,60 @@
-import {curry, tee} from "panda-garden"
+import {curry, tee} from "@pandastrike/garden"
 import {Router} from "panda-router"
 import TemplateParser from "url-template"
+import {error, relative} from "./helpers"
 
 class PageRouter
 
+  @create: (ax...) -> new PageRouter ax...
+  @add: curry (router, description) -> router.add description
+  @dispatch: curry (router, description) -> router.dispatch description
+  @link: curry (router, description) -> router.link description
+  @push: curry (router, description) -> router.push description
+  @replace: curry (router, description) -> router.replace description
+  @browse: curry (router, description) -> router.browse description
+
   constructor: ({@router = new Router, @handlers = {}} = {}) ->
 
-  @create: -> new PageRouter arguments...
+  add: (template, data, handler) ->
+    @router.add {template, data}
+    @handlers[data.name] = handler
 
-  @add: curry tee ({router, handlers}, template, data, handler) ->
-    router.add {template, data}
-    handlers[data.name] = handler
+  match: (path) -> @router.match path
 
-  @match: curry ({router}, path) -> router.match path
-
-  # TODO this seems like it belongs somewhere else
-  @relative: (url) ->
-    if /^[^\/]/.test url
-      {pathname, search} = new URL url
-      pathname + search
-    else
-      url
-
-  @dispatch: curry ($, {url, name, parameters}) ->
-    {router, handlers} = $
-    url ?= PageRouter.link {name, parameters}
-    path = PageRouter.relative url
+  dispatch: ({url, name, parameters}) ->
+    url ?= @link {name, parameters}
+    path = relative url
     try
-      {data, bindings} = PageRouter.match $, path
-    catch error
-      throw @error "dispatch: failed to match '#{url}'", error
-    try
-      handlers[data.name] {path, data, bindings}
-    catch error
-      throw PageRouter.error "dispatch: no handler defined for '#{data.name}'"
+      {data, bindings} = @match path
+      @handlers[data.name] {path, data, bindings}
+    catch _error
+      throw error "dispatch: failed with [#{url}]"
 
-  @link: curry ({router}, {name, parameters}) ->
-    console.log {router}
-    for route in router.routes
+  link: ({name, parameters}) ->
+    for route in @router.routes
       if route.data.name == name
         return TemplateParser
           .parse route.template
           .expand parameters ? {}
 
-    throw PageRouter.error "link: no page matching '#{name}'"
-
-  @push: curry ($, {url, name, parameters, state}) ->
-    url ?= PageRouter.link $, {name, parameters}
+  push: ({url, name, parameters, state}) ->
+    url ?= @link {name, parameters}
     window.history.pushState state, "", url
 
-  @replace: curry ($, {url, name, parameters, state}) ->
-    url ?= PageRouter.link $, {name, parameters}
+  replace: ({url, name, parameters, state}) ->
+    url ?= @link {name, parameters}
     window.history.replaceState state, "", url
 
-  @browse: curry ($, {url, name, parameters, state}) ->
-    url ?= PageRouter.link $, {name, parameters}
-    # pushState will throw if undefined
+  browse: ({url, name, parameters, state}) ->
+    url ?= @link {name, parameters}
+    # For non-local URLs, open the link in a new tab.
     try
-      PageRouter.push $, {url, state}
-      PageRouter.dispatch $, {url}
-    catch error
-      throw PageRouter.error "browse: unable to dispatch '#{url}'"
-      # For non-local URLs, open the link in a new tab.
+      @push {url, state}
+    catch _error
       window.open url
-
-  @error: (message, _error) ->
-    error = new Error "oxygen: #{message}"
-    if _error?
-      error.originalError = _error
-    error
+    @dispatch {url}
 
 {add, dispatch, link, push, replace, browse} = PageRouter
 
-# add shortcuts
-for name, fn of {add, dispatch, link, push, replace, browse}
-  do (name, fn) -> PageRouter::[name] = -> fn @, arguments...
-
-# allow direct references
 export {dispatch, link, push, replace, browse}
 export default PageRouter
