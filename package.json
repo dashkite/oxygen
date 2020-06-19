@@ -1,6 +1,6 @@
 {
   "name": "@dashkite/oxygen",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Browser-friendly URL-template-based routing",
   "main": "build/src/index.js",
   "files": [
