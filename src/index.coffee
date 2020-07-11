@@ -28,8 +28,10 @@ class PageRouter
       {data, bindings} = @match path
       @handlers[data.name] {path, data, bindings}
     catch _error
+      console.warn _error
       throw error "dispatch: failed with [#{url}]"
 
+  # TODO remove parameters that are empty strings
   link: ({name, parameters}) ->
     for route in @router.routes
       if route.data.name == name
