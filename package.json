@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "description": "Browser-friendly URL-template-based routing",
   "main": "build/src/index.js",
+  "coffee:main": "src/index.coffee",
   "files": [
-    "build/src"
+    "build/src",
+    "src"
   ],
   "scripts": {
     "test": "genie test"
