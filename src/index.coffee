@@ -1,5 +1,5 @@
 import {curry, tee} from "@pandastrike/garden"
-import {Router} from "panda-router"
+import {Router} from "@pandastrike/router"
 import TemplateParser from "url-template"
 import {error, relative} from "./helpers"
 
