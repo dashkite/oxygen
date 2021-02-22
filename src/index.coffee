@@ -7,7 +7,8 @@ class PageRouter
 
   @create: (ax...) -> new PageRouter ax...
   @add: curry (router, description) -> router.add description
-  @dispatch: curry (router, description) -> router.dispatch description
+  @dispatch: curry (router, description, context) ->
+    router.dispatch description, context
   @link: curry (router, description) -> router.link description
   @push: curry (router, description) -> router.push description
   @replace: curry (router, description) -> router.replace description
@@ -21,12 +22,12 @@ class PageRouter
 
   match: (path) -> @router.match path
 
-  dispatch: ({url, name, parameters}) ->
+  dispatch: ({url, name, parameters}, context) ->
     url ?= @link {name, parameters}
     path = relative url
     try
       {data, bindings} = @match path
-      @handlers[data.name] {path, data, bindings}
+      @handlers[data.name] {path, data, bindings}, context
     catch _error
       console.warn _error
       throw error "dispatch: failed with [#{url}]"
