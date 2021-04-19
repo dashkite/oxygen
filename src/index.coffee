@@ -6,7 +6,8 @@ import {error, relative} from "./helpers"
 class PageRouter
 
   @create: (ax...) -> new PageRouter ax...
-  @add: curry (router, description) -> router.add description
+  @add: curry (router, template, data, handler) ->
+    router.add template, data, handler
   @dispatch: curry (router, description, context) ->
     router.dispatch description, context
   @link: curry (router, description) -> router.link description
@@ -26,7 +27,10 @@ class PageRouter
     url ?= @link {name, parameters}
     path = relative url
     try
-      {data, bindings} = @match path
+      console.log "oxygen: matching path #{path}"
+      result = @match path
+      console.log "oxygen: match result", result
+      {data, bindings} = result
       @handlers[data.name] {path, data, bindings}, context
     catch _error
       console.warn _error

@@ -30,7 +30,8 @@
   "homepage": "https://github.com/dashkite/oxygen#readme",
   "dependencies": {
     "@pandastrike/garden": "^8.0.1",
-    "@pandastrike/router": "^3.0.1",
+    "@pandastrike/router": "^3.0.2",
+    "panda-generics": "^6.0.3",
     "url-template": "^2.0.8"
   },
   "devDependencies": {
