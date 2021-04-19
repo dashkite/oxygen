@@ -1,7 +1,9 @@
-import {curry, tee} from "@pandastrike/garden"
+import {curry, tee} from "@dashkite/joy/function"
 import {Router} from "@pandastrike/router"
 import TemplateParser from "url-template"
 import {error, relative} from "./helpers"
+
+defaults = trace: false
 
 class PageRouter
 
@@ -15,7 +17,14 @@ class PageRouter
   @replace: curry (router, description) -> router.replace description
   @browse: curry (router, description) -> router.browse description
 
-  constructor: ({@router = new Router, @handlers = {}} = {}) ->
+  constructor: ({@router, @handlers, options} = {}) ->
+    @router ?= new Router
+    @handlers ?= {}
+    @options = Object.assign {}, defaults, options
+
+  log: (text) ->
+    if @options.trace
+      console.info text
 
   add: (template, data, handler) ->
     @router.add {template, data}
@@ -27,9 +36,9 @@ class PageRouter
     url ?= @link {name, parameters}
     path = relative url
     try
-      console.log "oxygen: matching path #{path}"
+      @log "oxygen: matching path #{path}"
       result = @match path
-      console.log "oxygen: match result", result
+      @log "oxygen: match result", result
       {data, bindings} = result
       @handlers[data.name] {path, data, bindings}, context
     catch _error

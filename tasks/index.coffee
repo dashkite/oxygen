@@ -1,26 +1,33 @@
+import "coffeescript/register"
+import p from "path"
 import * as t from "@dashkite/genie"
-import * as b from "@dashkite/brick"
+import * as m from "@dashkite/masonry"
+import {coffee} from "@dashkite/masonry/coffee"
 import * as q from "panda-quill"
-import coffee from "coffeescript"
+import {tee, flow} from "@dashkite/joy"
 
-t.define "clean", -> q.rmr "build"
+t.define "clean", -> m.rm "build"
 
-t.define "build", "clean", b.start [
-  b.glob [ "{src,test}/**/*.coffee" ], "."
-  b.read
-  b.tr ({path}, code) ->
-    coffee.compile code,
-      bare: true
-      inlineMap: true
-      filename: path
-      transpile:
-        presets: [[
-          "@babel/preset-env"
-          targets: node: "current"
-        ]]
-  b.extension ".js"
-  b.write "build"
+t.define "build", "clean", m.start [
+  m.glob [ "{src,test}/**/*.coffee" ], "."
+  m.read
+  flow [
+    m.tr coffee target: "node"
+    m.extension ".js"
+    m.write p.join "build", "node"
+  ]
+  flow [
+    m.tr coffee target: "import"
+    m.extension ".js"
+    m.write p.join "build", "import"
+  ]
 ]
 
-t.define "test", "build", ->
-  b.node "build/test/index.js", [ "--enable-source.maps" ]
+t.define "node:test", [ "build" ], ->
+  m.exec "node", [
+    "--enable-source-maps"
+    "./build/node/test/index.js"
+  ]
+
+t.define "test", [ "clean" ], ->
+  require "../test"
