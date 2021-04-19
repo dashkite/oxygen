@@ -1,6 +1,6 @@
 {
   "name": "@dashkite/oxygen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Browser-friendly URL-template-based routing",
   "main": "build/src/index.js",
   "coffee:main": "src/index.coffee",
