@@ -9,7 +9,8 @@
     "node": "build/node/src/index.js"
   },
   "files": [
-    "build/src",
+    "build/import/src",
+    "build/node/src",
     "src"
   ],
   "scripts": {
