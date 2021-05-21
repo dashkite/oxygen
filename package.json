@@ -34,16 +34,16 @@
   },
   "homepage": "https://github.com/dashkite/oxygen#readme",
   "dependencies": {
-    "@dashkite/joy": "^0.3.0",
+    "@dashkite/joy": "^0.3.3",
     "@pandastrike/router": "^3.0.2",
     "url-template": "^2.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
-    "@dashkite/genie": "file:../genie",
-    "@dashkite/genie-presets": "file:../genie-presets",
-    "@dashkite/masonry": "^0.10.2",
+    "@dashkite/genie": "^0.3.3",
+    "@dashkite/genie-presets": "^0.1.5",
+    "@dashkite/masonry": "^0.10.3",
     "amen": "^3.0.0",
     "coffeescript": "^2.5.1",
     "panda-quill": "^5.0.0"
