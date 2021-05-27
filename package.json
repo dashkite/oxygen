@@ -2,24 +2,6 @@
   "name": "@dashkite/oxygen",
   "version": "0.3.2",
   "description": "Browser-friendly URL-template-based routing",
-  "main": "build/node/src/index.js",
-  "coffee:main": "src/index.coffee",
-  "exports": {
-    "import": "build/import/src/index.js",
-    "node": "build/node/src/index.js"
-  },
-  "files": [
-    "build/import/src",
-    "build/node/src",
-    "src"
-  ],
-  "scripts": {
-    "test": "genie test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dashkite/oxygen.git"
-  },
   "keywords": [
     "page",
     "route",
@@ -27,25 +9,41 @@
     "router",
     "url-template"
   ],
-  "author": "Dan Yoder",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "https://github.com/dashkite/oxygen#readme",
   "bugs": {
     "url": "https://github.com/dashkite/oxygen/issues"
   },
-  "homepage": "https://github.com/dashkite/oxygen#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashkite/oxygen.git"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "Dan Yoder",
+  "exports": {
+    ".": {
+      "import": "./build/import/src/index.js"
+    }
+  },
+  "main": "build/node/src/index.js",
+  "files": [
+    "build/import/src"
+  ],
+  "scripts": {
+    "test": "genie test"
+  },
   "dependencies": {
-    "@dashkite/joy": "^0.3.3",
+    "@dashkite/navigate": "^0.3.1",
     "@pandastrike/router": "^3.0.2",
     "url-template": "^2.0.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.2",
-    "@dashkite/genie": "^0.3.3",
-    "@dashkite/genie-presets": "^0.1.5",
-    "@dashkite/masonry": "^0.10.3",
-    "amen": "^3.0.0",
-    "coffeescript": "^2.5.1",
-    "panda-quill": "^5.0.0"
+    "@dashkite/amen": "^0.1.2",
+    "@dashkite/amen-console": "^0.0.1",
+    "@dashkite/genie": "^0.4.1",
+    "@dashkite/genie-presets": "file:../genie-presets",
+    "@dashkite/katana": "^0.4.7",
+    "@dashkite/masonry": "^0.10.8",
+    "@dashkite/mimic": "^0.2.1",
+    "coffeescript": "^2.5.1"
   }
 }

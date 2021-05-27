@@ -6,3 +6,7 @@ presets:
   verify: null
   update: null
   release: null
+  esm: null
+  pug:
+    import-map:
+      amen: latest

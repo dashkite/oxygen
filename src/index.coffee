@@ -1,13 +1,14 @@
-import {curry, tee} from "@dashkite/joy/function"
-import {Router} from "@pandastrike/router"
+import { curry, tee, pipe, flow } from "@dashkite/joy/function"
+import { each } from "@dashkite/joy/iterable"
+import { Router } from "@pandastrike/router"
 import TemplateParser from "url-template"
-import {error, relative} from "./helpers"
-
-defaults = trace: false
+import { navigate } from "@dashkite/navigate"
+import { error, relative } from "./helpers"
 
 class PageRouter
 
   @create: (ax...) -> new PageRouter ax...
+  @install: (router) -> router.install()
   @add: curry (router, template, data, handler) ->
     router.add template, data, handler
   @dispatch: curry (router, description, context) ->
@@ -17,14 +18,21 @@ class PageRouter
   @replace: curry (router, description) -> router.replace description
   @browse: curry (router, description) -> router.browse description
 
-  constructor: ({@router, @handlers, options} = {}) ->
+  constructor: ({@router, @handlers, @options} = {}) ->
     @router ?= new Router
     @handlers ?= {}
-    @options = Object.assign {}, defaults, options
 
-  log: (text) ->
-    if @options.trace
-      console.info text
+  install: ->
+
+    do =>
+      for await url from navigate window
+        @browse { url }
+
+    do =>
+      for await event from events "popstate", window
+        @dispatch
+          url: window.location.href
+          state: event.state
 
   add: (template, data, handler) ->
     @router.add {template, data}
@@ -36,9 +44,7 @@ class PageRouter
     url ?= @link {name, parameters}
     path = relative url
     try
-      @log "oxygen: matching path #{path}"
       result = @match path
-      @log "oxygen: match result", result
       {data, bindings} = result
       @handlers[data.name] {path, data, bindings}, context
     catch _error

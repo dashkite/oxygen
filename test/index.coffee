@@ -1,21 +1,10 @@
-import assert from "assert"
-import {print, test, success} from "amen"
-import Router, {dispatch} from "../src"
+import * as a from "amen"
+
+import PageRouter from "@dashkite/oxygen"
 
 do ->
+  window.__test = await a.test "Oxygen", [
 
-  print await test "oxygen", [
+    test "import", -> PageRouter?
 
-    test "dispatch", ->
-
-      router = Router.create()
-
-      name = undefined
-      router.add "/hello/{name}",
-        name: "greeting"
-        ({bindings}) -> name = bindings.name
-
-      router.dispatch url: "/hello/dan"
-
-      assert.equal "dan", name
   ]
