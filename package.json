@@ -32,18 +32,20 @@
     "test": "genie test"
   },
   "dependencies": {
-    "@dashkite/navigate": "^0.3.1",
-    "@pandastrike/router": "^3.0.2",
-    "url-template": "^2.0.8"
+    "@dashkite/navigate": "^0.3.2",
+    "@pandastrike/router": "^3.1.0",
+    "es6-url-template": "^3.0.2"
   },
   "devDependencies": {
     "@dashkite/amen": "^0.1.2",
     "@dashkite/amen-console": "^0.0.1",
+    "@dashkite/assert": "^0.1.0",
     "@dashkite/genie": "^0.4.1",
-    "@dashkite/genie-presets": "file:../genie-presets",
+    "@dashkite/genie-presets": "^0.1.12",
     "@dashkite/katana": "^0.4.7",
     "@dashkite/masonry": "^0.10.8",
     "@dashkite/mimic": "^0.2.1",
+    "chai": "^4.3.4",
     "coffeescript": "^2.5.1"
   }
 }
