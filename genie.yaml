@@ -7,6 +7,8 @@ presets:
     import-map:
       '@dashkite/amen': latest
       '@dashkite/assert': latest
+  browser:
+    logging: false
   coffeescript:
     targets:
       browser:
@@ -22,5 +24,27 @@ presets:
           glob:
             - test/**/*.coffee
             - '!test/client/**/*.coffee'
-  browser:
-    logging: false
+        - preset: browser
+          glob:
+            - src/**/*.coffee
+        - preset: browser
+          glob:
+            - test/client/**/*.coffee
+          options:
+            mode: debug
+        - preset: node
+          glob:
+            - test/**/*.coffee
+            - '!test/client/**/*.coffee'
+        - preset: browser
+          glob:
+            - src/**/*.coffee
+        - preset: browser
+          glob:
+            - test/client/**/*.coffee
+          options:
+            mode: debug
+        - preset: node
+          glob:
+            - test/**/*.coffee
+            - '!test/client/**/*.coffee'
