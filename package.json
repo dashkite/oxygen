@@ -21,12 +21,11 @@
   "author": "Dan Yoder",
   "exports": {
     ".": {
-      "import": "./build/import/src/index.js"
+      "browser": "./build/browser/src/index.js"
     }
   },
-  "main": "build/node/src/index.js",
   "files": [
-    "build/import/src"
+    "build/browser/src"
   ],
   "scripts": {
     "test": "genie test"
@@ -39,12 +38,12 @@
   "devDependencies": {
     "@dashkite/amen": "^0.1.2",
     "@dashkite/amen-console": "^0.0.1",
-    "@dashkite/assert": "^0.1.0",
-    "@dashkite/genie": "^0.4.1",
-    "@dashkite/genie-presets": "^0.1.13",
-    "@dashkite/katana": "^0.4.7",
-    "@dashkite/masonry": "^0.10.8",
-    "@dashkite/mimic": "^0.2.1",
+    "@dashkite/assert": "^0.1.1",
+    "@dashkite/genie": "^0.5.2",
+    "@dashkite/genie-presets": "^0.2.1",
+    "@dashkite/katana": "^0.4.8",
+    "@dashkite/masonry": "^0.11.5",
+    "@dashkite/mimic": "^0.2.2",
     "chai": "^4.3.4",
     "coffeescript": "^2.5.1"
   }
