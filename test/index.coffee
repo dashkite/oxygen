@@ -9,7 +9,7 @@ import browse from "@dashkite/genie-presets/browser"
 do browse ({browser, port}) ->
 
   # just give it a minute in case files haven't been written out yet
-  await sleep 100
+  await sleep 500
 
   print await test "Tests", [
 
