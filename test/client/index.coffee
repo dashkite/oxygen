@@ -1,20 +1,8 @@
 import assert from "@dashkite/assert"
-import * as a from "@dashkite/amen"
-import Router from "@dashkite/oxygen"
-
-# assert = chai.assert
-router = Router.create()
-
-Router.add router, "/hello/{name}",
-  name: "greeting"
-  ({bindings}) ->
-    window.greeting = "hello, #{bindings.name}"
+import { test } from "@dashkite/amen"
 
 do ->
 
-  window.__test = await a.test "Oxygen", [
+  window.__test = await do ->
 
-    a.test "import", ->
-      router.browse url: "/hello/alice"
-      assert.equal window.greeting, "hello, alice"
-  ]
+    test "In-Browser Tests", []

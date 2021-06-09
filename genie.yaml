@@ -4,11 +4,26 @@ presets:
   release: null
   esm: null
   pug:
-    import-map:
-      '@dashkite/amen': latest
-      '@dashkite/assert': latest
+    targets:
+      test:
+        - preset: render
+          glob: test/client/index.pug
+          document: true
+          options:
+            import-map:
+              '@dashkite/amen': latest
+              '@dashkite/assert': latest
+      app:
+        - preset: render
+          glob: src/index.pug
+          document: true
+        - preset: compile
+          glob:
+            - src/**/*.pug
+            - '!src/index.pug'
   browser:
     logging: false
+    fallback: ./build/browser/test/client/index.html
   coffeescript:
     targets:
       browser:
@@ -48,3 +63,6 @@ presets:
           glob:
             - test/**/*.coffee
             - '!test/client/**/*.coffee'
+  server:
+    logging: false
+    fallback: ./build/browser/src/index.html

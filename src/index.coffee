@@ -1,5 +1,5 @@
 import { curry, tee, pipe, flow } from "@dashkite/joy/function"
-import { each } from "@dashkite/joy/iterable"
+import { events } from "@dashkite/joy/iterable"
 import { Router } from "@pandastrike/router"
 import * as TemplateParser from "es6-url-template"
 import { navigate } from "@dashkite/navigate"
@@ -43,13 +43,15 @@ class PageRouter
   dispatch: ({url, name, parameters}, context) ->
     url ?= @link {name, parameters}
     path = relative url
-    try
-      result = @match path
+    if (result = @match path)?
       {data, bindings} = result
-      @handlers[data.name] {path, data, bindings}, context
-    catch _error
-      console.warn _error
-      throw error "dispatch: failed with [#{url}]"
+      try
+        @handlers[data.name] {path, data, bindings}, context
+      catch _error
+        console.warn _error
+        throw error "handler failed for [#{url}]"
+    else
+      throw error "dispatch: no matching route for [#{url}]"
 
   # TODO remove parameters that are empty strings
   link: ({name, parameters}) ->
