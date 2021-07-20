@@ -3,6 +3,21 @@ presets:
   update: null
   release: null
   esm: null
+  coffeescript:
+    targets:
+      browser:
+        - preset: browser
+          glob:
+            - src/**/*.coffee
+        - preset: browser
+          glob:
+            - test/client/**/*.coffee
+          options:
+            mode: debug
+        - preset: node
+          glob:
+            - test/**/*.coffee
+            - '!test/client/**/*.coffee'
   pug:
     targets:
       test:
@@ -24,45 +39,6 @@ presets:
   browser:
     logging: false
     fallback: ./build/browser/test/client/index.html
-  coffeescript:
-    targets:
-      browser:
-        - preset: browser
-          glob:
-            - src/**/*.coffee
-        - preset: browser
-          glob:
-            - test/client/**/*.coffee
-          options:
-            mode: debug
-        - preset: node
-          glob:
-            - test/**/*.coffee
-            - '!test/client/**/*.coffee'
-        - preset: browser
-          glob:
-            - src/**/*.coffee
-        - preset: browser
-          glob:
-            - test/client/**/*.coffee
-          options:
-            mode: debug
-        - preset: node
-          glob:
-            - test/**/*.coffee
-            - '!test/client/**/*.coffee'
-        - preset: browser
-          glob:
-            - src/**/*.coffee
-        - preset: browser
-          glob:
-            - test/client/**/*.coffee
-          options:
-            mode: debug
-        - preset: node
-          glob:
-            - test/**/*.coffee
-            - '!test/client/**/*.coffee'
   server:
     logging: false
     fallback: ./build/browser/src/index.html

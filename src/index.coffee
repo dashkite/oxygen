@@ -1,7 +1,7 @@
 import { curry, tee, pipe, flow } from "@dashkite/joy/function"
 import { events } from "@dashkite/joy/iterable"
 import { Router } from "@pandastrike/router"
-import * as TemplateParser from "es6-url-template"
+import TemplateParser from "es6-url-template"
 import { navigate } from "@dashkite/navigate"
 import { error, relative } from "./helpers"
 
@@ -57,7 +57,7 @@ class PageRouter
   link: ({name, parameters}) ->
     for route in @router.routes
       if route.data.name == name
-        return (new TemplateParser .route.template)
+        return (new TemplateParser route.template)
           .expand parameters ? {}
 
   push: ({url, name, parameters, state}) ->
