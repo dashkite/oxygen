@@ -1,6 +1,6 @@
 import { curry, tee, pipe, flow } from "@dashkite/joy/function"
 import { events } from "@dashkite/joy/iterable"
-import { Router } from "@pandastrike/router"
+import { Router } from "@dashkite/router"
 import TemplateParser from "es6-url-template"
 import { navigate } from "@dashkite/navigate"
 import { error, relative } from "./helpers"

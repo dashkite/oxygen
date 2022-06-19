@@ -32,19 +32,19 @@
   },
   "dependencies": {
     "@dashkite/navigate": "^0.3.2",
+    "@dashkite/router": "file:../router",
     "@pandastrike/router": "^3.1.0",
     "es6-url-template": "^3.0.2"
   },
   "devDependencies": {
     "@dashkite/amen": "^0.1.2",
     "@dashkite/amen-console": "^0.0.1",
-    "@dashkite/assert": "^0.1.3",
-    "@dashkite/genie": "^0.5.4",
-    "@dashkite/genie-presets": "^0.4.9",
+    "@dashkite/assert": "^0.1.4",
+    "@dashkite/genie": "^0.5.11",
+    "@dashkite/genie-presets": "file:../genie-presets",
     "@dashkite/katana": "^0.4.8",
-    "@dashkite/masonry": "^0.11.9",
-    "@dashkite/mimic": "^0.2.3",
-    "chai": "^4.3.4",
-    "coffeescript": "^2.5.1"
+    "@dashkite/masonry": "^0.12.4",
+    "@dashkite/mimic": "^0.2.4",
+    "coffeescript": "^2.7.0"
   }
 }

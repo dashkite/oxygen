@@ -18,9 +18,10 @@ presets:
           glob:
             - test/**/*.coffee
             - '!test/client/**/*.coffee'
+
   pug:
     targets:
-      test:
+      browser:
         - preset: render
           glob: test/client/index.pug
           document: true
@@ -28,7 +29,7 @@ presets:
             import-map:
               '@dashkite/amen': latest
               '@dashkite/assert': latest
-      app:
+      node:
         - preset: render
           glob: src/index.pug
           document: true
