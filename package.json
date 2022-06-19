@@ -33,7 +33,6 @@
   "dependencies": {
     "@dashkite/navigate": "^0.3.2",
     "@dashkite/router": "file:../router",
-    "@pandastrike/router": "^3.1.0",
     "es6-url-template": "^3.0.2"
   },
   "devDependencies": {
