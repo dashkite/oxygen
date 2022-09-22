@@ -43,3 +43,5 @@ presets:
   server:
     logging: false
     fallback: ./build/browser/src/index.html
+
+sky: {}
