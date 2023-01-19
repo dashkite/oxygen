@@ -5,18 +5,18 @@ specifiers:
   '@dashkite/amen-console': ^0.0.2
   '@dashkite/assert': ^0.1.4
   '@dashkite/genie': ^0.5.11
-  '@dashkite/genie-presets': ^0.6.0
+  '@dashkite/genie-presets': ^0.6.1
   '@dashkite/katana': ^0.4.8
   '@dashkite/masonry': ^0.12.4
   '@dashkite/mimic': ^0.2.4
   '@dashkite/navigate': ^0.3.2
-  '@dashkite/router': file:../router
+  '@dashkite/url-router': file:../url-router
   coffeescript: ^2.7.0
   es6-url-template: ^3.0.2
 
 dependencies:
   '@dashkite/navigate': 0.3.2
-  '@dashkite/router': file:../router
+  '@dashkite/url-router': file:../url-router
   es6-url-template: 3.0.2
 
 devDependencies:
@@ -24,7 +24,7 @@ devDependencies:
   '@dashkite/amen-console': 0.0.2
   '@dashkite/assert': 0.1.4
   '@dashkite/genie': 0.5.11
-  '@dashkite/genie-presets': 0.6.0
+  '@dashkite/genie-presets': 0.6.1
   '@dashkite/katana': 0.4.8
   '@dashkite/masonry': 0.12.5
   '@dashkite/mimic': 0.2.4
@@ -2091,7 +2091,6 @@ packages:
     resolution: {integrity: sha512-OLOzI/lA+EwCh6znSexGAG1V4bkaT5gU04xl6ApEluv5jICnHhinZ707MObu+jhVVJ9uHDDlG85O+Afn1aTQoQ==}
     dependencies:
       '@dashkite/joy': 0.3.16
-    dev: true
 
   /@dashkite/atlas/0.5.2:
     resolution: {integrity: sha512-um4JjsHgIpKPzQHRCX8T8foWZozjStTzFsUMaVVTDBwT5EuhBJpxJBBcQcSrvMmukNgrJfhpoTqU+9kNS9paRg==}
@@ -2107,11 +2106,11 @@ packages:
       - supports-color
     dev: true
 
-  /@dashkite/genie-presets/0.6.0:
-    resolution: {integrity: sha512-NkReC0yxiLfoyuAnOgEhkObz2syv1ESoaSV1qE0lIlhiLY3amGkRp1u5c+3JXuy/Iy5fNRO6EzoComkdG6YQAg==}
+  /@dashkite/genie-presets/0.6.1:
+    resolution: {integrity: sha512-QfL/kIoXXWREFWUCDt+0+ofaRnz2gDA9vSL9JEEl0pAiB3J3n0bBoheLeb5IjoCHd8OKrg0kFKNuvpDdiWZ2xg==}
     dependencies:
       '@dashkite/joy': 0.3.16
-      '@dashkite/masonry': file:../masonry
+      '@dashkite/masonry': 0.12.5
       '@dashkite/mimic': 0.2.4
       '@dashkite/writeme': 0.2.0
       ajv: 8.12.0
@@ -3576,6 +3575,10 @@ packages:
     hasBin: true
     dev: true
 
+  /json-query/2.2.2:
+    resolution: {integrity: sha512-y+IcVZSdqNmS4fO8t1uZF6RMMs0xh3SrTjJr9bp1X3+v0Q13+7Cyv12dSmKwDswp/H427BVtpkLWhGxYu3ZWRA==}
+    dev: false
+
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
     dev: true
@@ -4833,46 +4836,31 @@ packages:
       fd-slicer: 1.1.0
     dev: true
 
-  file:../masonry:
-    resolution: {directory: ../masonry, type: directory}
-    name: '@dashkite/masonry'
-    version: 0.12.5
+  file:../messages:
+    resolution: {directory: ../messages, type: directory}
+    name: '@dashkite/messages'
+    version: 0.0.0
     dependencies:
-      '@babel/core': 7.20.12
-      '@babel/preset-env': 7.20.2_@babel+core@7.20.12
-      '@dashkite/atlas': 0.5.2
       '@dashkite/joy': 0.3.16
-      '@dashkite/katana': 0.4.8
-      babel-plugin-add-import-extension: 1.6.0_@babel+core@7.20.12
-      cheerio: 1.0.0-rc.12
-      chokidar: 3.5.3
-      coffeescript: 2.7.0
-      execa: 5.1.1
-      fast-glob: 3.2.12
-      js-yaml: 4.1.0
-      marked: 3.0.8
-      pug: 3.0.2
-      stylus: 0.59.0
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
-    dev: true
+      '@dashkite/polaris': file:../polaris
+    dev: false
 
   file:../parse:
     resolution: {directory: ../parse, type: directory}
     name: '@dashkite/parse'
-    version: 0.3.1
+    version: 0.4.0
     dependencies:
       '@dashkite/joy': 0.3.16
     dev: false
 
-  file:../router:
-    resolution: {directory: ../router, type: directory}
-    name: '@dashkite/router'
+  file:../polaris:
+    resolution: {directory: ../polaris, type: directory}
+    name: '@dashkite/polaris'
     version: 0.0.0
     dependencies:
       '@dashkite/joy': 0.3.16
-      '@dashkite/url-codex': file:../url-codex
+      '@dashkite/parse': file:../parse
+      json-query: 2.2.2
     dev: false
 
   file:../url-codex:
@@ -4881,5 +4869,16 @@ packages:
     version: 0.0.0
     dependencies:
       '@dashkite/joy': 0.3.16
+      '@dashkite/messages': file:../messages
       '@dashkite/parse': file:../parse
+    dev: false
+
+  file:../url-router:
+    resolution: {directory: ../url-router, type: directory}
+    name: '@dashkite/url-router'
+    version: 0.0.0
+    dependencies:
+      '@dashkite/assert': 0.1.4
+      '@dashkite/joy': 0.3.16
+      '@dashkite/url-codex': file:../url-codex
     dev: false

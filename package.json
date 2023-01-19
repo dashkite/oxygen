@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@dashkite/navigate": "^0.3.2",
-    "@dashkite/router": "file:../router",
+    "@dashkite/url-router": "file:../url-router",
     "es6-url-template": "^3.0.2"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@dashkite/amen-console": "^0.0.2",
     "@dashkite/assert": "^0.1.4",
     "@dashkite/genie": "^0.5.11",
-    "@dashkite/genie-presets": "^0.6.0",
+    "@dashkite/genie-presets": "^0.6.1",
     "@dashkite/katana": "^0.4.8",
     "@dashkite/masonry": "^0.12.4",
     "@dashkite/mimic": "^0.2.4",
