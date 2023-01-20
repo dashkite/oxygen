@@ -44,4 +44,5 @@ presets:
     logging: false
     fallback: ./build/browser/src/index.html
 
-sky: {}
+modules:
+  db: "7tro1s4qcwnz2ytrj1eox8y1a"
