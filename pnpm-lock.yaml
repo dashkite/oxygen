@@ -5,18 +5,18 @@ specifiers:
   '@dashkite/amen-console': ^0.0.2
   '@dashkite/assert': ^0.1.4
   '@dashkite/genie': ^0.5.11
-  '@dashkite/genie-presets': ^0.6.1
+  '@dashkite/genie-presets': ^0.6.2
   '@dashkite/katana': ^0.4.8
   '@dashkite/masonry': ^0.12.4
   '@dashkite/mimic': ^0.2.4
   '@dashkite/navigate': ^0.3.2
-  '@dashkite/url-router': file:../url-router
+  '@dashkite/url-router': link:../url-router
   coffeescript: ^2.7.0
   es6-url-template: ^3.0.2
 
 dependencies:
   '@dashkite/navigate': 0.3.2
-  '@dashkite/url-router': file:../url-router
+  '@dashkite/url-router': link:../url-router
   es6-url-template: 3.0.2
 
 devDependencies:
@@ -24,7 +24,7 @@ devDependencies:
   '@dashkite/amen-console': 0.0.2
   '@dashkite/assert': 0.1.4
   '@dashkite/genie': 0.5.11
-  '@dashkite/genie-presets': 0.6.1
+  '@dashkite/genie-presets': 0.6.2
   '@dashkite/katana': 0.4.8
   '@dashkite/masonry': 0.12.5
   '@dashkite/mimic': 0.2.4
@@ -2091,6 +2091,7 @@ packages:
     resolution: {integrity: sha512-OLOzI/lA+EwCh6znSexGAG1V4bkaT5gU04xl6ApEluv5jICnHhinZ707MObu+jhVVJ9uHDDlG85O+Afn1aTQoQ==}
     dependencies:
       '@dashkite/joy': 0.3.16
+    dev: true
 
   /@dashkite/atlas/0.5.2:
     resolution: {integrity: sha512-um4JjsHgIpKPzQHRCX8T8foWZozjStTzFsUMaVVTDBwT5EuhBJpxJBBcQcSrvMmukNgrJfhpoTqU+9kNS9paRg==}
@@ -2106,8 +2107,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dashkite/genie-presets/0.6.1:
-    resolution: {integrity: sha512-QfL/kIoXXWREFWUCDt+0+ofaRnz2gDA9vSL9JEEl0pAiB3J3n0bBoheLeb5IjoCHd8OKrg0kFKNuvpDdiWZ2xg==}
+  /@dashkite/genie-presets/0.6.2:
+    resolution: {integrity: sha512-3EeevHZqwK00faISFmV0Ah99qF7B9rB4LagtHRkriuVhYqWn44FQxdPjGTiseLHX+KHDn/h7yiRxhxlt0dpluA==}
     dependencies:
       '@dashkite/joy': 0.3.16
       '@dashkite/masonry': 0.12.5
@@ -3575,10 +3576,6 @@ packages:
     hasBin: true
     dev: true
 
-  /json-query/2.2.2:
-    resolution: {integrity: sha512-y+IcVZSdqNmS4fO8t1uZF6RMMs0xh3SrTjJr9bp1X3+v0Q13+7Cyv12dSmKwDswp/H427BVtpkLWhGxYu3ZWRA==}
-    dev: false
-
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
     dev: true
@@ -4835,50 +4832,3 @@ packages:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
     dev: true
-
-  file:../messages:
-    resolution: {directory: ../messages, type: directory}
-    name: '@dashkite/messages'
-    version: 0.0.0
-    dependencies:
-      '@dashkite/joy': 0.3.16
-      '@dashkite/polaris': file:../polaris
-    dev: false
-
-  file:../parse:
-    resolution: {directory: ../parse, type: directory}
-    name: '@dashkite/parse'
-    version: 0.4.0
-    dependencies:
-      '@dashkite/joy': 0.3.16
-    dev: false
-
-  file:../polaris:
-    resolution: {directory: ../polaris, type: directory}
-    name: '@dashkite/polaris'
-    version: 0.0.0
-    dependencies:
-      '@dashkite/joy': 0.3.16
-      '@dashkite/parse': file:../parse
-      json-query: 2.2.2
-    dev: false
-
-  file:../url-codex:
-    resolution: {directory: ../url-codex, type: directory}
-    name: '@dashkite/url-codex'
-    version: 0.0.0
-    dependencies:
-      '@dashkite/joy': 0.3.16
-      '@dashkite/messages': file:../messages
-      '@dashkite/parse': file:../parse
-    dev: false
-
-  file:../url-router:
-    resolution: {directory: ../url-router, type: directory}
-    name: '@dashkite/url-router'
-    version: 0.0.0
-    dependencies:
-      '@dashkite/assert': 0.1.4
-      '@dashkite/joy': 0.3.16
-      '@dashkite/url-codex': file:../url-codex
-    dev: false
