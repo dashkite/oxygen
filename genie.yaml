@@ -1,47 +1,34 @@
-presets:
-  verify: null
-  update: null
-  release: null
-  esm: null
-  coffeescript:
-    targets:
-      browser:
-        - preset: browser
-          glob:
-            - src/**/*.coffee
-        - preset: browser
-          glob:
-            - test/client/**/*.coffee
-          options:
-            mode: debug
-        - preset: node
-          glob:
-            - test/**/*.coffee
-            - '!test/client/**/*.coffee'
+coffee:
+  targets:
+    browser:
+      - preset: browser
+        glob:
+          - src/**/*.coffee
+      - preset: browser
+        glob:
+          - test/client/**/*.coffee
+        options:
+          mode: debug
+      - preset: node
+        glob:
+          - test/**/*.coffee
+          - '!test/client/**/*.coffee'
 
-  pug:
-    targets:
-      browser:
-        - preset: render
-          glob: test/client/index.pug
-          document: true
-          options:
-            import-map:
-              '@dashkite/amen': latest
-              '@dashkite/assert': latest
-      node:
-        - preset: render
-          glob: src/index.pug
-          document: true
-        - preset: compile
-          glob:
-            - src/**/*.pug
-            - '!src/index.pug'
-  browser:
-    logging: false
-    fallback: ./build/browser/test/client/index.html
-  server:
-    logging: false
-    fallback: ./build/browser/src/index.html
+# import-map:
+#   map:
+#     imports:
+#       '@dashkite/amen': latest
+#       '@dashkite/assert': latest
 
-modules: {}
+pug:
+  targets:
+    browser:
+      - preset: html
+        glob: test/client/index.pug
+    node:
+      - preset: html
+        glob: src/index.pug
+      - preset: js
+        glob:
+          - src/**/*.pug
+          - '!src/index.pug'

@@ -41,9 +41,9 @@
     "@dashkite/amen-console": "^0.0.2",
     "@dashkite/assert": "^0.1.4",
     "@dashkite/genie": "link:../genie",
-    "@dashkite/genie-modules": "link:../genie-modules",
+    "@dashkite/genie-coffee": "link:../genie-coffee",
+    "@dashkite/genie-pug": "link:../genie-pug",
     "@dashkite/katana": "^0.4.8",
-    "@dashkite/mimic": "^0.2.4",
-    "coffeescript": "^2.7.0"
+    "@dashkite/mimic": "^0.2.4"
   }
 }

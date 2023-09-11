@@ -28,18 +28,18 @@ devDependencies:
   '@dashkite/genie':
     specifier: link:../genie
     version: link:../genie
-  '@dashkite/genie-modules':
-    specifier: link:../genie-modules
-    version: link:../genie-modules
+  '@dashkite/genie-coffee':
+    specifier: link:../genie-coffee
+    version: link:../genie-coffee
+  '@dashkite/genie-pug':
+    specifier: link:../genie-pug
+    version: link:../genie-pug
   '@dashkite/katana':
     specifier: ^0.4.8
     version: 0.4.8
   '@dashkite/mimic':
     specifier: ^0.2.4
     version: 0.2.4
-  coffeescript:
-    specifier: ^2.7.0
-    version: 2.7.0
 
 packages:
 
@@ -160,12 +160,6 @@ packages:
 
   /chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
-    dev: true
-
-  /coffeescript@2.7.0:
-    resolution: {integrity: sha512-hzWp6TUE2d/jCcN67LrW1eh5b/rSDKQK6oD6VMLlggYVUUFexgTH9z3dNYihzX4RMhze5FTUsUmOXViJKFQR/A==}
-    engines: {node: '>=6'}
-    hasBin: true
     dev: true
 
   /color-convert@2.0.1:
