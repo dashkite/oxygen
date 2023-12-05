@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@dashkite/joy':
+    specifier: ^0.3.16
+    version: 0.3.16
   '@dashkite/navigate':
     specifier: ^0.3.2
     version: 0.3.2
