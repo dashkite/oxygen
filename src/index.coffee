@@ -35,7 +35,7 @@ class PageRouter
           state: event.state
 
   add: (template, data, handler) ->
-    @router.add {template, data}
+    @router.prepend {template, data}
     @handlers[data.name] = handler
 
   match: (path) -> @router.match path
