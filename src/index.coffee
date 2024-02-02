@@ -34,9 +34,17 @@ class PageRouter
           url: window.location.href
           state: event.state
 
-  add: (template, data, handler) ->
+  append: (template, data, handler) ->
+    @router.append {template, data}
+    @handlers[data.name] = handler
+
+  prepend: (template, data, handler) ->
     @router.prepend {template, data}
     @handlers[data.name] = handler
+
+  # convenience / backward compatibility
+  add: ( template, data, handler ) -> 
+    @append template, data, handler
 
   match: (path) -> @router.match path
 
