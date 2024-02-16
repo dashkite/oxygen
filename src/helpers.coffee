@@ -1,10 +1,21 @@
-error = (message) -> new Error "oxgen: #{message}"
+error = ( message ) -> new Error "oxgen: #{message}"
 
-relative = (url) ->
+relative = ( url ) ->
   if /^[^\/]/.test url
     {pathname, search} = new URL url
     pathname + search
   else
     url
 
-export {error, relative}
+isSameOrigin = ( url ) ->
+  window.location.origin == url.origin
+
+isCurrentLocation = ( url ) ->
+  window.location.href == url.href
+
+export { 
+  error
+  relative
+  isSameOrigin
+  isCurrentLocation
+}

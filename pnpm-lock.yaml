@@ -9,14 +9,14 @@ dependencies:
     specifier: ^0.3.16
     version: 0.3.16
   '@dashkite/navigate':
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: link:../navigate
+    version: link:../navigate
+  '@dashkite/url-codex':
+    specifier: link:../url-codex
+    version: link:../url-codex
   '@dashkite/url-router':
     specifier: link:../url-router
     version: link:../url-router
-  es6-url-template:
-    specifier: ^3.0.2
-    version: 3.0.2
 
 devDependencies:
   '@dashkite/amen':
@@ -110,12 +110,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
-
-  /@dashkite/navigate@0.3.2:
-    resolution: {integrity: sha512-RVOMnnLEyduA7mCk60a4sIlGLDmC949YOra33b0JuIUqhBe34NUEktJZS4oD1gLSihkDwk+nY83T+BOSWOfbJg==}
-    dependencies:
-      '@dashkite/joy': 0.3.16
-    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -263,6 +257,7 @@ packages:
 
   /@types/node@20.10.5:
     resolution: {integrity: sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==}
+    requiresBuild: true
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -408,10 +403,6 @@ packages:
   /es6-promise@2.3.0:
     resolution: {integrity: sha512-oyOjMhyKMLEjOOtvkwg0G4pAzLQ9WdbbeX7WdqKzvYXu+UFgD0Zo/Brq5Q49zNmnGPPzV5rmYvrr0jz1zWx8Iw==}
     dev: true
-
-  /es6-url-template@3.0.2:
-    resolution: {integrity: sha512-8ZqWPZ8aa9FoyZlGlC+s/d84VW7glQA3WwvDTl0Ykmwi/fX1aEmd6RWoBprX7QWzwR5zrv8RIokfj6kLmcdYzA==}
-    dev: false
 
   /extract-zip@2.0.1:
     resolution: {integrity: sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==}
@@ -802,6 +793,7 @@ packages:
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+    requiresBuild: true
     dev: true
     optional: true
 

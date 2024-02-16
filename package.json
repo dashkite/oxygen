@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "@dashkite/joy": "^0.3.16",
-    "@dashkite/navigate": "^0.3.2",
-    "@dashkite/url-router": "link:../url-router",
-    "es6-url-template": "^3.0.2"
+    "@dashkite/navigate": "link:../navigate",
+    "@dashkite/url-codex": "link:../url-codex",
+    "@dashkite/url-router": "link:../url-router"
   },
   "devDependencies": {
     "@dashkite/amen": "^0.2.0",

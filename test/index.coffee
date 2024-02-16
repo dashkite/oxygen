@@ -4,22 +4,30 @@ import { sleep } from "@dashkite/joy"
 
 import * as k from "@dashkite/katana"
 import * as m from "@dashkite/mimic"
-import browse from "@dashkite/genie-presets/browser"
+# import browse from "@dashkite/genie-presets/browser"
 
-do browse ({browser, port}) ->
+# do browse ({browser, port}) ->
 
-  # just give it a minute in case files haven't been written out yet
-  await sleep 1000
+#   # just give it a minute in case files haven't been written out yet
+#   await sleep 1000
 
-  print await test "Tests", [
+#   print await test "Tests", [
 
-    await do m.launch browser, [
-      m.page
-      m.goto "http://localhost:#{port}/"
-      m.waitFor -> window.__test?
-      m.evaluate -> window.__test
-      k.get
-    ]
+#     await do m.launch browser, [
+#       m.page
+#       m.goto "http://localhost:#{port}/"
+#       m.waitFor -> window.__test?
+#       m.evaluate -> window.__test
+#       k.get
+#     ]
+
+#   ]
+
+do ->
+
+  print await test "Oxygen", [
+
+    test "simple routing"
 
   ]
 

@@ -1,24 +1,22 @@
-import { curry, tee, pipe, flow } from "@dashkite/joy/function"
+import * as Fn  from "@dashkite/joy/function"
+import { generic }  from "@dashkite/joy/generic"
+import * as Type  from "@dashkite/joy/type"
 import { events } from "@dashkite/joy/iterable"
 import { Router } from "@dashkite/url-router"
-import TemplateParser from "es6-url-template"
 import { navigate } from "@dashkite/navigate"
-import { error, relative } from "./helpers"
+import { encode } from "@dashkite/url-codex"
+import { error, relative, isSameOrigin, isCurrentLocation } from "./helpers"
+
+# implementation is below
+# declared here so we can reference it
+# in the PageRouter class definition
+normalize = generic name: "Oxygen.normalize"
 
 class PageRouter
 
-  @create: (ax...) -> new PageRouter ax...
-  @install: (router) -> router.install()
-  @add: curry (router, template, data, handler) ->
-    router.add template, data, handler
-  @dispatch: curry (router, description, context) ->
-    router.dispatch description, context
-  @link: curry (router, description) -> router.link description
-  @push: curry (router, description) -> router.push description
-  @replace: curry (router, description) -> router.replace description
-  @browse: curry (router, description) -> router.browse description
+  @create: ( ax... ) -> new PageRouter ax...
 
-  constructor: ({@router, @handlers, @options} = {}) ->
+  constructor: ({ @router, @handlers, @options } = {}) ->
     @router ?= new Router
     @handlers ?= {}
 
@@ -34,58 +32,100 @@ class PageRouter
           url: window.location.href
           state: event.state
 
-  append: (template, data, handler) ->
-    @router.append {template, data}
+  start: ->
+    queueMicrotask =>
+      @dispatch url: window.location.href
+
+  append: ( template, data, handler ) ->
+    @router.append { template, data }
     @handlers[data.name] = handler
 
-  prepend: (template, data, handler) ->
-    @router.prepend {template, data}
+  prepend: ( template, data, handler ) ->
+    @router.prepend { template, data }
     @handlers[data.name] = handler
 
   # convenience / backward compatibility
   add: ( template, data, handler ) -> 
     @append template, data, handler
 
-  match: (path) -> @router.match path
+  normalize: ( url ) -> normalize @, url
 
-  dispatch: ({url, name, parameters}, context) ->
-    url ?= @link {name, parameters}
+  match: ( path ) -> @router.match path
+
+  dispatch: ({ url, name, parameters }, context) ->
+    url ?= @link { name, parameters }
+    url = @normalize url
     path = relative url
-    if (result = @match path)?
-      {data, bindings} = result
+    if ( result = @match path )?
+      { data, bindings } = result
       try
-        @handlers[data.name] {path, data, bindings}, context
+        @handlers[data.name] { path, data, bindings }, context
       catch _error
         console.warn _error
-        throw error "handler failed for [#{url}]"
+        throw error "handler failed for [#{ url }]"
     else
-      throw error "dispatch: no matching route for [#{url}]"
+      throw error "dispatch: no matching route for [#{ url }]"
 
   # TODO remove parameters that are empty strings
-  link: ({name, parameters}) ->
-    for route in @router.routes
-      if route.data.name == name
-        return (new TemplateParser route.template)
-          .expand parameters ? {}
+  link: ({ name, parameters }) ->
+    origin = window.location.href    
+    route = @router.routes.find ( route ) -> route.data.name == name
+    if route?
+      path = encode route.template, ( parameters ? {} )  
+      new URL path, origin
+    else
+      console.warn "no matching route for [ #{ name } ]"
+      new URL "/", origin
 
-  push: ({url, name, parameters, state}) ->
-    url ?= @link {name, parameters}
-    window.history.pushState state, "", url
+  push: ({ url, name, parameters, state }) ->
+    url ?= @link { name, parameters }
+    window.history.pushState state, "", url.href
 
-  replace: ({url, name, parameters, state}) ->
-    url ?= @link {name, parameters}
-    window.history.replaceState state, "", url
+  replace: ({ url, name, parameters, state }) ->
+    url ?= @link { name, parameters }
+    window.history.replaceState state, "", url.href
 
-  browse: ({url, name, parameters, state}) ->
-    url ?= @link {name, parameters}
-    # For non-local URLs, open the link in a new tab.
-    try
-      @push {url, state}
-    catch _error
+  browse: ({ url, name, parameters, state }) ->
+    url ?= @link { name, parameters }
+    url = @normalize url
+    if isSameOrigin url
+      unless isCurrentLocation url
+        @push { url, state }
+        @dispatch { url }
+    else
       window.open url
-    @dispatch {url}
 
-{add, dispatch, link, push, replace, browse} = PageRouter
+# add convenience class methods
+for name in ( Object.getOwnPropertyNames PageRouter:: )
+  if name != "constructor"
+    value = PageRouter::[ name ]
+    if Type.isFunction value
+      PageRouter[ name ] ?= Fn.detach value
 
-export {dispatch, link, push, replace, browse}
+hasPageScheme = ( url ) ->
+  ( Type.isType URL, url ) &&
+    url.protocol == "page:"
+
+generic normalize,
+  ( Type.isType PageRouter ),
+  Type.isString,
+  ( router, url ) -> normalize router, new URL url
+
+generic normalize,
+  ( Type.isType PageRouter ),
+  ( Type.isType URL ),
+  ( router, url ) -> url
+
+generic normalize,
+  ( Type.isType PageRouter ),
+  hasPageScheme,
+  ( router, url ) ->
+    # TODO this should probably be based on a template?
+    # see also Render.link in Vega Generators
+    [ resource, action ] = url.pathname.split "/"
+    # this probably isn't quite right...
+    PageRouter.link router,
+      name: "#{ action }-#{ resource}"
+      parameters: Object.fromEntries url.searchParams
+
 export default PageRouter
