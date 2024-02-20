@@ -38,8 +38,8 @@ devDependencies:
     specifier: link:../genie-coffee
     version: link:../genie-coffee
   '@dashkite/genie-module':
-    specifier: link:../genie-modules
-    version: link:../genie-modules
+    specifier: link:../genie-module
+    version: link:../genie-module
   '@dashkite/genie-pug':
     specifier: link:../genie-pug
     version: link:../genie-pug
