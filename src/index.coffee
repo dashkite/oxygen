@@ -1,6 +1,7 @@
 import * as Fn  from "@dashkite/joy/function"
 import { generic }  from "@dashkite/joy/generic"
 import * as Type  from "@dashkite/joy/type"
+import * as Obj  from "@dashkite/joy/object"
 import { events } from "@dashkite/joy/iterable"
 import { Router } from "@dashkite/url-router"
 import { navigate } from "@dashkite/navigate"
@@ -67,9 +68,10 @@ class PageRouter
       throw error "dispatch: no matching route for [#{ url }]"
 
   # TODO remove parameters that are empty strings
-  link: ({ name, parameters }) ->
+  link: ({ name, query, parameters }) ->
+    query ?= { name }
     origin = window.location.href    
-    route = @router.routes.find ( route ) -> route.data.name == name
+    route = @router.routes.find ( route ) -> Obj.query query, route.data
     if route?
       path = encode route.template, ( parameters ? {} )  
       new URL path, origin
@@ -125,7 +127,7 @@ generic normalize,
     [ resource, action ] = url.pathname.split "/"
     # this probably isn't quite right...
     PageRouter.link router,
-      name: "#{ action }-#{ resource}"
+      query: { resource, action }
       parameters: Object.fromEntries url.searchParams
 
 export default PageRouter
