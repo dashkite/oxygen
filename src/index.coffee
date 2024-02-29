@@ -8,10 +8,16 @@ import { navigate } from "@dashkite/navigate"
 import { encode } from "@dashkite/url-codex"
 import { error, relative, isSameOrigin, isCurrentLocation } from "./helpers"
 
+# TODO fall back to 'not found' named route
+
 # implementation is below
 # declared here so we can reference it
 # in the PageRouter class definition
 normalize = generic name: "Oxygen.normalize"
+
+queue = ->
+  new Promise ( resolve ) ->
+    queueMicrotask resolve
 
 class PageRouter
 
@@ -34,8 +40,13 @@ class PageRouter
           state: event.state
 
   start: ->
-    queueMicrotask =>
-      @dispatch url: window.location.href
+    loop
+      before = @router.routes.length
+      await do queue
+      after = @router.routes.length
+      if before == after
+        @dispatch url: window.location.href
+        break
 
   append: ( template, data, handler ) ->
     @router.append { template, data }
@@ -47,25 +58,27 @@ class PageRouter
 
   # convenience / backward compatibility
   add: ( template, data, handler ) -> 
-    @append template, data, handler
+    @prepend template, data, handler
 
   normalize: ( url ) -> normalize @, url
 
   match: ( path ) -> @router.match path
 
-  dispatch: ({ url, name, parameters }, context) ->
-    url ?= @link { name, parameters }
-    url = @normalize url
-    path = relative url
+  dispatch: ({ url, path, name, parameters }, context) ->
+    path ?= do =>
+      url ?= @link { name, parameters }
+      url = @normalize url
+      relative url
     if ( result = @match path )?
+      console.log result
       { data, bindings } = result
       try
         @handlers[data.name] { path, data, bindings }, context
       catch _error
         console.warn _error
-        throw error "handler failed for [#{ url }]"
+        throw error "handler failed for [#{ path }]"
     else
-      throw error "dispatch: no matching route for [#{ url }]"
+      throw error "dispatch: no matching route for [#{ path }]"
 
   # TODO remove parameters that are empty strings
   link: ({ name, query, parameters }) ->
