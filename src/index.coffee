@@ -70,7 +70,6 @@ class PageRouter
       url = @normalize url
       relative url
     if ( result = @match path )?
-      console.log result
       { data, bindings } = result
       try
         @handlers[data.name] { path, data, bindings }, context
