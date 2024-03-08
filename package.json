@@ -32,7 +32,7 @@
     "build": "genie build"
   },
   "dependencies": {
-    "@dashkite/joy": "^0.3.16",
+    "@dashkite/joy": "link:../joy",
     "@dashkite/navigate": "link:../navigate",
     "@dashkite/url-codex": "link:../url-codex",
     "@dashkite/url-router": "link:../url-router"

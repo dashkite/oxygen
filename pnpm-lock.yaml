@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@dashkite/joy':
-    specifier: ^0.3.16
-    version: 0.3.16
+    specifier: link:../joy
+    version: link:../joy
   '@dashkite/navigate':
     specifier: link:../navigate
     version: link:../navigate
@@ -76,6 +76,7 @@ packages:
 
   /@dashkite/joy@0.3.16:
     resolution: {integrity: sha512-dsU0us4j1Pb+zceoBvLbnZ2PbmULkJUtM2vtWLxKmoc1DE4w9SVTiPTe6JWvF0A0vk90ldv+Lc9qEA5x3O+DtQ==}
+    dev: true
 
   /@dashkite/katana@0.4.8:
     resolution: {integrity: sha512-KOfMS5aRZItxPeMv0OXbOTCj5BZhN9jM190jae8HB7WgGB5uM5jEzRWmyh3yVbxTaL83o7csktRzUkxkr/Op1A==}

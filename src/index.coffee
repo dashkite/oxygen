@@ -10,11 +10,6 @@ import { error, relative, isSameOrigin, isCurrentLocation } from "./helpers"
 
 # TODO fall back to 'not found' named route
 
-# implementation is below
-# declared here so we can reference it
-# in the PageRouter class definition
-normalize = generic name: "Oxygen.normalize"
-
 queue = ->
   new Promise ( resolve ) ->
     queueMicrotask resolve
@@ -60,24 +55,43 @@ class PageRouter
   add: ( template, data, handler ) -> 
     @prepend template, data, handler
 
-  normalize: ( url ) -> normalize @, url
-
   match: ( path ) -> @router.match path
 
-  dispatch: ({ url, path, name, parameters }, context) ->
-    path ?= do =>
-      url ?= @link { name, parameters }
-      url = @normalize url
-      relative url
-    if ( result = @match path )?
+  normalize: ( context ) ->
+    if context.isSameOrigin?
+      context
+    else do ({ url, path, name, parameters, state } = context ) =>
+
+      path ?= do =>
+        url ?= @link { name, parameters }
+        if !( Type.isURL url )
+          url = new URL url
+        if url.scheme == "page:"
+          [ resource, action ] = url.pathname.split "/"
+          # this probably isn't quite right...
+          url = @link
+            query: { resource, action }
+            parameters: Object.fromEntries url.searchParams
+        relative url
+      url ?= new URL path, window.location.origin
+      { 
+        url, path, state 
+        isSameOrigin: isSameOrigin url
+        isCurrentLocation: isCurrentLocation url
+      }
+
+  dispatch: ( context, store ) ->
+    context = @normalize context
+    { path } = context
+    if !( result = @match path )?
+      throw error "dispatch: no matching route for [#{ path }]"
+    else
       { data, bindings } = result
       try
-        @handlers[data.name] { path, data, bindings }, context
+        @handlers[data.name] { path, data, bindings }, store
       catch _error
         console.warn _error
         throw error "handler failed for [#{ path }]"
-    else
-      throw error "dispatch: no matching route for [#{ path }]"
 
   # TODO remove parameters that are empty strings
   link: ({ name, query, parameters }) ->
@@ -91,23 +105,23 @@ class PageRouter
       console.warn "no matching route for [ #{ name } ]"
       new URL "/", origin
 
-  push: ({ url, name, parameters, state }) ->
-    url ?= @link { name, parameters }
-    window.history.pushState state, "", url.href
+  push: ( context ) ->
+    context = @normalize context
+    window.history.pushState context.state, "", context.path
 
-  replace: ({ url, name, parameters, state }) ->
-    url ?= @link { name, parameters }
-    window.history.replaceState state, "", url.href
+  replace: ( context ) ->
+    context = @normalize context
+    window.history.replaceState context.state, "", context.path
 
-  browse: ({ url, name, parameters, state }) ->
-    url ?= @link { name, parameters }
-    url = @normalize url
-    if isSameOrigin url
-      unless isCurrentLocation url
-        @push { url, state }
-        @dispatch { url }
+  browse: ( context ) ->
+    context = @normalize context
+    if context.isCurrentLocation
+      return
+    else if !context.isSameOrigin
+      window.open context.url.href
     else
-      window.open url
+      @push context
+      @dispatch context
 
 # add convenience class methods
 for name in ( Object.getOwnPropertyNames PageRouter:: )
@@ -115,31 +129,5 @@ for name in ( Object.getOwnPropertyNames PageRouter:: )
     value = PageRouter::[ name ]
     if Type.isFunction value
       PageRouter[ name ] ?= Fn.detach value
-
-hasPageScheme = ( url ) ->
-  ( Type.isType URL, url ) &&
-    url.protocol == "page:"
-
-generic normalize,
-  ( Type.isType PageRouter ),
-  Type.isString,
-  ( router, url ) -> normalize router, new URL url
-
-generic normalize,
-  ( Type.isType PageRouter ),
-  ( Type.isType URL ),
-  ( router, url ) -> url
-
-generic normalize,
-  ( Type.isType PageRouter ),
-  hasPageScheme,
-  ( router, url ) ->
-    # TODO this should probably be based on a template?
-    # see also Render.link in Vega Generators
-    [ resource, action ] = url.pathname.split "/"
-    # this probably isn't quite right...
-    PageRouter.link router,
-      query: { resource, action }
-      parameters: Object.fromEntries url.searchParams
 
 export default PageRouter
