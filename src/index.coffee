@@ -102,7 +102,7 @@ class PageRouter
       path = encode route.template, ( parameters ? {} )  
       new URL path, origin
     else
-      console.warn "no matching route for [ #{ name } ]"
+      console.warn "no matching route for query", query
       new URL "/", origin
 
   push: ( context ) ->
