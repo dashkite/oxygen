@@ -57,29 +57,23 @@ class PageRouter
 
   match: ( path ) -> @router.match path
 
+  _normalize: ({ url, path, name, query, parameters, state }) ->
+    path ?= do =>
+      url ?= @link { name, query, parameters }
+      url = if Type.isURL url then url else new URL url
+      relative url
+    url ?= new URL path, window.location.origin
+    { 
+      url, path, state 
+      isSameOrigin: isSameOrigin url
+      isCurrentLocation: isCurrentLocation url
+    }
+
   normalize: ( context ) ->
     if context.isSameOrigin?
       context
-    else do ({ url, path, name, parameters, state } = context ) =>
-
-      path ?= do =>
-        url ?= @link { name, parameters }
-        if !( Type.isURL url )
-          url = new URL url
-        if url.scheme == "page:"
-          [ resource, action ] = url.pathname.split "/"
-          # this probably isn't quite right...
-          url = @link
-            query: { resource, action }
-            parameters: Object.fromEntries url.searchParams
-        relative url
-      url ?= new URL path, window.location.origin
-      { 
-        url, path, state 
-        isSameOrigin: isSameOrigin url
-        isCurrentLocation: isCurrentLocation url
-      }
-
+    else @_normalize context
+    
   dispatch: ( context, store ) ->
     context = @normalize context
     { path } = context
@@ -122,6 +116,19 @@ class PageRouter
     else
       @push context
       @dispatch context
+
+  # TODO should redirect open external links in a new tab
+  #      as we do with browse?
+  redirect: ( context ) ->
+    context = @normalize context
+    if context.isCurrentLocation
+      return
+    else if !context.isSameOrigin
+      window.open context.url.href
+    else
+      @replace context
+      @dispatch context
+  
 
 # add convenience class methods
 for name in ( Object.getOwnPropertyNames PageRouter:: )
