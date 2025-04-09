@@ -90,14 +90,14 @@ class PageRouter
   # TODO remove parameters that are empty strings
   link: ({ name, query, parameters }) ->
     query ?= { name }
-    origin = window.location.href    
+    base = window.location.href    
     route = @router.routes.find ( route ) -> Obj.query query, route.data
     if route?
       path = encode route.template, ( parameters ? {} )  
-      new URL path, origin
+      new URL path, base
     else
       console.warn "no matching route for query", query
-      new URL "/", origin
+      new URL "/", base
 
   push: ( context ) ->
     context = @normalize context
