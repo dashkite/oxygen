@@ -8,7 +8,6 @@ import { navigate } from "@dashkite/navigate"
 import { encode } from "@dashkite/url-codex"
 import { error, relative, isSameOrigin, isCurrentLocation } from "./helpers"
 
-# TODO fall back to 'not found' named route
 
 queue = ->
   new Promise ( resolve ) ->
@@ -87,7 +86,6 @@ class PageRouter
         console.warn _error
         throw error "handler failed for [#{ path }]"
 
-  # TODO remove parameters that are empty strings
   link: ({ name, query, parameters }) ->
     query ?= { name }
     base = window.location.href    
@@ -117,8 +115,6 @@ class PageRouter
       @push context
       @dispatch context
 
-  # TODO should redirect open external links in a new tab
-  #      as we do with browse?
   redirect: ( context ) ->
     context = @normalize context
     if context.isCurrentLocation
