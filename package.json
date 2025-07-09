@@ -46,10 +46,9 @@
     "@dashkite/genie-coffee": "link:../genie-coffee",
     "@dashkite/genie-module": "link:../genie-module",
     "@dashkite/genie-pug": "link:../genie-pug",
-    "@dashkite/genie-release": "link:../genie-release",
+    "@dashkite/genie-release": "^0.2.0",
     "@dashkite/genie-watch": "link:../genie-watch",
     "@dashkite/katana": "^0.4.8",
-    "@dashkite/mimic": "^0.2.4",
-    "@dashkite/vista": "link:../vista"
+    "@dashkite/mimic": "^0.2.4"
   }
 }
