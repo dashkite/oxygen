@@ -46,9 +46,9 @@
     "@dashkite/genie": "^0.16.0",
     "@dashkite/genie-clean": "0.9.0",
     "@dashkite/genie-coffee": "0.9.0",
-    "@dashkite/genie-pug": "link:../genie-pug",
+    "@dashkite/genie-pug": "0.4.1",
     "@dashkite/genie-release": "^0.2.10",
-    "@dashkite/genie-watch": "link:../genie-watch",
+    "@dashkite/genie-watch": "0.6.0",
     "@dashkite/katana": "^0.4.8",
     "@dashkite/mimic": "^0.2.4"
   }
