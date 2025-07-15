@@ -9,17 +9,17 @@ importers:
   .:
     dependencies:
       '@dashkite/joy':
-        specifier: link:../joy
-        version: link:../joy
+        specifier: 0.8.0
+        version: 0.8.0
       '@dashkite/navigate':
-        specifier: link:../navigate
-        version: link:../navigate
+        specifier: 0.8.0
+        version: 0.8.0
       '@dashkite/url-codex':
-        specifier: link:../url-codex
-        version: link:../url-codex
+        specifier: 0.6.0
+        version: 0.6.0
       '@dashkite/url-router':
-        specifier: link:../url-router
-        version: link:../url-router
+        specifier: 0.6.0
+        version: 0.6.0
     devDependencies:
       '@dashkite/amen':
         specifier: ^0.5.0
@@ -630,8 +630,17 @@ packages:
   '@dashkite/joy@0.3.16':
     resolution: {integrity: sha512-dsU0us4j1Pb+zceoBvLbnZ2PbmULkJUtM2vtWLxKmoc1DE4w9SVTiPTe6JWvF0A0vk90ldv+Lc9qEA5x3O+DtQ==}
 
+  '@dashkite/joy@0.5.0':
+    resolution: {integrity: sha512-kaDNKKS6v5r3vukOkh54aarrhiTHwbcKZZW8eDav5FhT6u8RRrmSaFeAbwLzGntdPScaEhqg/PLrvtPHOy9OlQ==}
+
   '@dashkite/joy@0.6.0':
     resolution: {integrity: sha512-6lFhlzHQ3SWqD1o8RcT6prWmiU5KHhdmG/t8AaGChRfYCYOahDmmLtaglMmpNJVWnve8nFL7BBC03+hnTl9HUw==}
+
+  '@dashkite/joy@0.7.0':
+    resolution: {integrity: sha512-1sldJtFRJJwwm1yb2vrhUNvs9ns30ROS5E7KwBTkJ+yPVNsbgIFbakYn7AQSaEsLs/ZdqbHW7dWx+Wo/uG4D7w==}
+
+  '@dashkite/joy@0.8.0':
+    resolution: {integrity: sha512-ahSu2HEkyY5CxHdGw9wALlVrng1Hk2zuKXMAnZ/GC3q1Wbq8CqtgVyJxfYxM7H0gSVgyXy4bZ9xulh5sASeuEg==}
 
   '@dashkite/kaiko@0.3.3':
     resolution: {integrity: sha512-XnAvVr9y2MsDqMLr4A24vkLF7Iuq3E8RjHEEpqhe29P5NevVX9jXKcXUStNMp9MSJbjHd2pqUNiM5Vvdja9ggg==}
@@ -650,6 +659,24 @@ packages:
 
   '@dashkite/mimic@0.2.4':
     resolution: {integrity: sha512-qwe8E5DtqrcO1LY1tqpSl4QjvycpAblI6oIpFXRNZu2pAGGPKIrYwTZoil9boT8iUzE1GwGgt7tTnMY91AHksg==}
+
+  '@dashkite/navigate@0.8.0':
+    resolution: {integrity: sha512-W/Kz6P4jWo/XmaBjOhcFtPctL01RuhZOsSbiJ1JKnVj3jqpZbM8BimnqLM8MRTuvOxdsCc3kcpAYx4GgBegQpQ==}
+
+  '@dashkite/parse@0.4.3':
+    resolution: {integrity: sha512-bE0kBjaGYjUnCzWJelQnx8vsfJ9YP07aRTVFZoY7TZWvMmnihoCSugL4IVWAOA2O0EAZXjT8FcjA4bNJ/BQwwg==}
+
+  '@dashkite/parse@0.7.0':
+    resolution: {integrity: sha512-lhU3LuRKCUVOgswBHjTvLnGIzhOk+QIxUQVSRNv+U1iPSzjpypFd/EBL5UQQ4qqU2w9u8M63FIBFHcxRiB/oDw==}
+
+  '@dashkite/url-codex@0.5.0':
+    resolution: {integrity: sha512-oQVWxXEOdC2B4UzvI/+gQJqzzbhxhRV9p/uMrnHy4WKLT/k9GtyEaqSWcvTJicCl17/goNP2hmdMroN5lgMkrg==}
+
+  '@dashkite/url-codex@0.6.0':
+    resolution: {integrity: sha512-QKw2Y0SVG33RXlpP8LpE8V/HsXGmtlA+0MRinAsekzQ8GtS10wjoguNP1afYlEzmC3PY1YAy4N84uGnATY0lrQ==}
+
+  '@dashkite/url-router@0.6.0':
+    resolution: {integrity: sha512-Js8N7BXaY8fyLse1Diugl4gInGQFGj9ExdOCGlV0M9Yvq9P/lrNFNz85An5hRTHlrQT/Yt7jb9MjcRtR9C+0Eg==}
 
   '@dashkite/zephyr@0.2.0':
     resolution: {integrity: sha512-l3Fm9nyOIp1yBnv4IzGOKVgo1/UucU5WLvsqAfcP2jEVlE4AgpPkODssyloxTyC3N+bhcz1DXqC/7KokI1eVjA==}
@@ -2339,7 +2366,13 @@ snapshots:
 
   '@dashkite/joy@0.3.16': {}
 
+  '@dashkite/joy@0.5.0': {}
+
   '@dashkite/joy@0.6.0': {}
+
+  '@dashkite/joy@0.7.0': {}
+
+  '@dashkite/joy@0.8.0': {}
 
   '@dashkite/kaiko@0.3.3': {}
 
@@ -2379,6 +2412,33 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  '@dashkite/navigate@0.8.0':
+    dependencies:
+      '@dashkite/joy': 0.7.0
+
+  '@dashkite/parse@0.4.3':
+    dependencies:
+      '@dashkite/joy': 0.3.16
+
+  '@dashkite/parse@0.7.0':
+    dependencies:
+      '@dashkite/joy': 0.3.16
+
+  '@dashkite/url-codex@0.5.0':
+    dependencies:
+      '@dashkite/joy': 0.5.0
+      '@dashkite/parse': 0.4.3
+
+  '@dashkite/url-codex@0.6.0':
+    dependencies:
+      '@dashkite/joy': 0.7.0
+      '@dashkite/parse': 0.7.0
+
+  '@dashkite/url-router@0.6.0':
+    dependencies:
+      '@dashkite/joy': 0.7.0
+      '@dashkite/url-codex': 0.5.0
 
   '@dashkite/zephyr@0.2.0':
     dependencies:

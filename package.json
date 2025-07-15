@@ -34,10 +34,10 @@
     "release": "genie release"
   },
   "dependencies": {
-    "@dashkite/joy": "link:../joy",
-    "@dashkite/navigate": "link:../navigate",
-    "@dashkite/url-codex": "link:../url-codex",
-    "@dashkite/url-router": "link:../url-router"
+    "@dashkite/joy": "0.8.0",
+    "@dashkite/navigate": "0.8.0",
+    "@dashkite/url-codex": "0.6.0",
+    "@dashkite/url-router": "0.6.0"
   },
   "devDependencies": {
     "@dashkite/amen": "^0.5.0",
