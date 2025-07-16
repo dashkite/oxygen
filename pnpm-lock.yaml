@@ -43,8 +43,8 @@ importers:
         specifier: 0.4.1
         version: 0.4.1
       '@dashkite/genie-release':
-        specifier: ^0.2.12
-        version: 0.2.12
+        specifier: ^0.2.14
+        version: 0.2.14
       '@dashkite/genie-watch':
         specifier: 0.6.0
         version: 0.6.0(@aws-sdk/credential-provider-node@3.529.0)
@@ -879,8 +879,8 @@ packages:
   '@dashkite/genie-pug@0.4.1':
     resolution: {integrity: sha512-X2T8OebU4amkGT7pAXPML//Ul0CHQOxUJFJi/rfYZY4s51vLpdbS9zkBelwE+UqoOtiUrsYzRlp7foskhXGZyg==}
 
-  '@dashkite/genie-release@0.2.12':
-    resolution: {integrity: sha512-pO0uXG1ntZT+inD63YobSW84MyeHNiEuwpiDsDR5LvwVfhXlwQtZEQCVpimfHKAf14SeZ5RL8YQKgeRy1V/+Lw==}
+  '@dashkite/genie-release@0.2.14':
+    resolution: {integrity: sha512-nCl/031ZlxwIXC6ThX7xv1HBKo4GVxesKU2d3PcWDrXe7heXGC7bjmxmS3ZVqhH9zXV7T+bDOsDWOOUMH2wciA==}
 
   '@dashkite/genie-watch@0.6.0':
     resolution: {integrity: sha512-sQhFU+h8VSbt1di3q3nGOIem0hA5n7+A5YzWpbCTknQmC6683Sb6MoTyJ7Iuo/ngzSm7U1vMeV3ALdEVoCfPvw==}
@@ -983,8 +983,8 @@ packages:
   '@dashkite/url-router@0.6.0':
     resolution: {integrity: sha512-Js8N7BXaY8fyLse1Diugl4gInGQFGj9ExdOCGlV0M9Yvq9P/lrNFNz85An5hRTHlrQT/Yt7jb9MjcRtR9C+0Eg==}
 
-  '@dashkite/zephyr@0.2.0':
-    resolution: {integrity: sha512-l3Fm9nyOIp1yBnv4IzGOKVgo1/UucU5WLvsqAfcP2jEVlE4AgpPkODssyloxTyC3N+bhcz1DXqC/7KokI1eVjA==}
+  '@dashkite/zephyr@0.12.1':
+    resolution: {integrity: sha512-84wSTbmFpI+tydtzTkMT6FS5ybnNaL4V40fA2c235/UPx/Whg3NRr6BaVLW53+v+bHL6fDbttCTZNNLEtzTxPw==}
 
   '@eslint-community/eslint-utils@4.7.0':
     resolution: {integrity: sha512-dyybb3AcajC7uha6CvhdVRJqaKyn7w2YKqKyAN37NKYgZT36w+iRb0Dymmc5qEJ549c/S31cMMSFd75bteCpCw==}
@@ -4319,9 +4319,9 @@ snapshots:
       - '@swc/helpers'
       - supports-color
 
-  '@dashkite/genie-release@0.2.12':
+  '@dashkite/genie-release@0.2.14':
     dependencies:
-      '@dashkite/zephyr': 0.2.0
+      '@dashkite/zephyr': 0.12.1
       zx: 8.7.1
 
   '@dashkite/genie-watch@0.6.0(@aws-sdk/credential-provider-node@3.529.0)':
@@ -4517,9 +4517,9 @@ snapshots:
       '@dashkite/joy': 0.7.0
       '@dashkite/url-codex': 0.5.0
 
-  '@dashkite/zephyr@0.2.0':
+  '@dashkite/zephyr@0.12.1':
     dependencies:
-      '@dashkite/joy': 0.3.16
+      '@dashkite/joy': 0.7.0
       js-yaml: 4.1.0
 
   '@eslint-community/eslint-utils@4.7.0(eslint@8.57.1)':
