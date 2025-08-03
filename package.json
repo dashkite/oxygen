@@ -34,21 +34,21 @@
     "release": "genie release"
   },
   "dependencies": {
-    "@dashkite/joy": "0.8.0",
-    "@dashkite/navigate": "0.8.0",
-    "@dashkite/url-codex": "0.6.0",
-    "@dashkite/url-router": "0.6.0"
+    "@dashkite/joy": "^0.8.0",
+    "@dashkite/navigate": "^0.8.0",
+    "@dashkite/url-codex": "^0.6.0",
+    "@dashkite/url-router": "^0.6.0"
   },
   "devDependencies": {
     "@dashkite/amen": "^0.5.0",
     "@dashkite/amen-console": "^0.4.0",
     "@dashkite/assert": "^0.3.0",
     "@dashkite/genie": "^0.20.4",
-    "@dashkite/genie-clean": "0.9.0",
-    "@dashkite/genie-coffee": "0.9.0",
-    "@dashkite/genie-pug": "0.4.1",
+    "@dashkite/genie-clean": "^0.9.0",
+    "@dashkite/genie-coffee": "^0.9.0",
+    "@dashkite/genie-pug": "^0.4.1",
     "@dashkite/genie-release": "^0.3.0",
-    "@dashkite/genie-watch": "0.6.0",
+    "@dashkite/genie-watch": "^0.6.0",
     "@dashkite/katana": "^0.4.8",
     "@dashkite/mimic": "^0.2.4"
   }
