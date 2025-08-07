@@ -31,8 +31,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       '@dashkite/genie':
-        specifier: ^0.20.10
-        version: 0.20.10
+        specifier: ^0.20.11
+        version: 0.20.11
       '@dashkite/genie-clean':
         specifier: ^0.9.0
         version: 0.9.0
@@ -885,8 +885,8 @@ packages:
   '@dashkite/genie-watch@0.6.0':
     resolution: {integrity: sha512-sQhFU+h8VSbt1di3q3nGOIem0hA5n7+A5YzWpbCTknQmC6683Sb6MoTyJ7Iuo/ngzSm7U1vMeV3ALdEVoCfPvw==}
 
-  '@dashkite/genie@0.20.10':
-    resolution: {integrity: sha512-Ir9aw5anu9t2F0tlIfmauT1ofKzU2kGpxVfc4bnW9t+Uz7SrIrC4sauX+r/2PzrkXk/gRAhuKT7VKTz+SlYcqw==}
+  '@dashkite/genie@0.20.11':
+    resolution: {integrity: sha512-IVZs3Kiso/BmiDr5wHza8aeAjWvGfbxXxdmn4sV6iQrpo/Bsv3A/1Gbcblc7fhXzvwtTtG2x0ASlvpcSVyz3Pw==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -4350,7 +4350,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@dashkite/genie@0.20.10':
+  '@dashkite/genie@0.20.11':
     dependencies:
       '@dashkite/joy': 0.7.0
       '@dashkite/kaiko': 0.3.3
