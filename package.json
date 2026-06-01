@@ -1,6 +1,6 @@
 {
   "name": "@dashkite/oxygen",
-  "version": "0.8.24",
+  "version": "0.8.25",
   "description": "Browser-friendly URL-template-based routing",
   "keywords": [
     "page",
